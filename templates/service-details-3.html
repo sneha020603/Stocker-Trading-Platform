@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Trading Analytics Dashboard</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<div class="nav-left">
+<h2>Admin Analytics</h2>
+</div>
+
+<div class="nav-right">
+
+<img src="{{ url_for('static', filename='uploads/' + session.get('photo','default.png')) }}" class="profile">
+
+<span>{{ session.get('email') }}</span>
+
+<a href="/update_photo"><button>Update Photo</button></a>
+
+<a href="/logout"><button>Logout</button></a>
+
+</div>
+
+</div>
+
+
+<div class="container">
+
+<h1>Trading Analytics Dashboard</h1>
+
+<h3>Total Transactions: {{ total_transactions }}</h3>
+
+
+<div class="chart-box">
+<h3>Buy vs Sell Trades</h3>
+<canvas id="tradeChart"></canvas>
+</div>
+
+<br>
+
+<div class="chart-box">
+<h3>Trades Per Stock</h3>
+<canvas id="stockChart"></canvas>
+</div>
+
+<br>
+
+<div class="chart-box">
+<h3>Daily Transactions</h3>
+<canvas id="dailyChart"></canvas>
+</div>
+
+<br>
+
+<div class="chart-box">
+<h3>Top Traders</h3>
+<canvas id="traderChart"></canvas>
+</div>
+
+<br>
+
+<a href="/dashboard_admin"><button>Back</button></a>
+
+</div>
+
+
+<script>
+
+new Chart(document.getElementById("tradeChart"),{
+
+type:"pie",
+
+data:{
+labels:["Buy","Sell"],
+datasets:[{
+data:[{{ buy_count }},{{ sell_count }}],
+backgroundColor:["#00c896","#ff4444"]
+}]
+},
+
+options:{
+plugins:{
+legend:{
+labels:{
+color:"#ffffff"
+}
+}
+}
+}
+
+});
+
+
+
+new Chart(document.getElementById("stockChart"),{
+
+type:"bar",
+
+data:{
+labels:{{ stock_labels|tojson }},
+datasets:[{
+label:"Trades",
+data:{{ stock_values|tojson }},
+backgroundColor:"#00ffd5"
+}]
+},
+
+options:{
+plugins:{
+legend:{
+labels:{
+color:"#ffffff"
+}
+}
+},
+scales:{
+x:{
+ticks:{color:"#ffffff"},
+grid:{color:"#444"}
+},
+y:{
+beginAtZero:true,
+ticks:{
+color:"#ffffff",
+stepSize:1
+},
+grid:{color:"#444"}
+}
+}
+}
+
+});
+
+
+
+new Chart(document.getElementById("dailyChart"),{
+
+type:"line",
+
+data:{
+labels:{{ day_labels|tojson }},
+datasets:[{
+label:"Daily Trades",
+data:{{ day_values|tojson }},
+borderColor:"#00c896",
+fill:false
+}]
+},
+
+options:{
+plugins:{
+legend:{
+labels:{
+color:"#ffffff"
+}
+}
+},
+scales:{
+x:{
+ticks:{color:"#ffffff"},
+grid:{color:"#444"}
+},
+y:{
+ticks:{color:"#ffffff"},
+grid:{color:"#444"}
+}
+}
+}
+
+});
+
+
+
+new Chart(document.getElementById("traderChart"),{
+
+type:"bar",
+
+data:{
+labels:{{ trader_labels|tojson }},
+datasets:[{
+label:"Trades",
+data:{{ trader_values|tojson }},
+backgroundColor:"#ffa500"
+}]
+},
+
+options:{
+plugins:{
+legend:{
+labels:{
+color:"#ffffff"
+}
+}
+},
+scales:{
+x:{
+ticks:{color:"#ffffff"},
+grid:{color:"#444"}
+},
+y:{
+ticks:{color:"#ffffff"},
+grid:{color:"#444"}
+}
+}
+}
+
+});
+</script>
+
+</body>
+</html>

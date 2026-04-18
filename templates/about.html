@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>About Stocker</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+/* ABOUT PAGE */
+
+.about-container{
+width:70%;
+margin:auto;
+margin-top:60px;
+background:rgba(0,0,0,0.80);
+padding:40px;
+border-radius:10px;
+box-shadow:0 4px 20px rgba(0,0,0,0.6);
+}
+
+.about-header{
+text-align:center;
+margin-bottom:40px;
+}
+
+.about-header h1{
+font-size:32px;
+}
+
+.about-section{
+margin-bottom:30px;
+}
+
+.about-box{
+background:#111;
+padding:18px;
+border-radius:6px;
+margin-bottom:12px;
+border-left:4px solid #00ffd5;
+}
+
+.about-box span{
+color:#00ffd5;
+font-weight:bold;
+}
+
+.feature-box{
+background:#111;
+padding:18px;
+border-radius:6px;
+margin-bottom:10px;
+border-left:4px solid #00ffd5;
+}
+
+.back-btn{
+margin-top:30px;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="nav-left">
+<h2>Stocker</h2>
+</div>
+
+<div class="nav-right">
+
+<a href="/dashboard_trader"><button>Dashboard</button></a>
+<a href="/help"><button>Help</button></a>
+<a href="/faq"><button>FAQs</button></a>
+<a href="/support"><button>Support</button></a>
+
+</div>
+
+</div>
+
+
+<!-- ABOUT CONTENT -->
+
+<div class="about-container">
+
+<div class="about-header">
+
+<h1>About Stocker</h1>
+
+<p>
+Stocker is a cloud-based stock trading simulation platform that allows users
+to explore stock market trading in a safe environment.
+</p>
+
+</div>
+
+
+<!-- PLATFORM DESCRIPTION -->
+
+<div class="about-section">
+
+<h2>Platform Overview</h2>
+
+<div class="about-box">
+<span>Purpose:</span> Practice stock trading without financial risk.
+</div>
+
+<div class="about-box">
+<span>Technology:</span> Built using Flask, MySQL, and cloud services.
+</div>
+
+<div class="about-box">
+<span>Goal:</span> Help users learn stock market analysis and trading strategies.
+</div>
+
+</div>
+
+
+<!-- FEATURES -->
+
+<div class="about-section">
+
+<h2>Platform Features</h2>
+
+<div class="feature-box">Live stock price tracking</div>
+<div class="feature-box">Buy and sell stock simulation</div>
+<div class="feature-box">Portfolio analysis</div>
+<div class="feature-box">Trading analytics dashboard</div>
+
+</div>
+
+
+<!-- BACK BUTTON -->
+
+<div class="back-btn">
+
+<a href="/dashboard_trader">
+<button>Back</button>
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

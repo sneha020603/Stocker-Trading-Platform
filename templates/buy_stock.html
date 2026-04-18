@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Buy Stock</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Buy Stock</h1>
+
+<h2>{{ stock.symbol }}</h2>
+<p>Price: ${{ stock.price }}</p>
+
+<form method="POST">
+
+<input type="number" name="quantity" placeholder="Enter quantity" required>
+
+<button type="submit">Buy Stock</button>
+
+</form>
+
+<br>
+
+<a href="/dashboard_trader"><button>Back</button></a>
+
+</div>
+
+</body>
+</html>

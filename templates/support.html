@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Customer Support | Stocker</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+/* SUPPORT PAGE */
+
+.support-container{
+width:70%;
+margin:auto;
+margin-top:60px;
+background:rgba(0,0,0,0.80);
+padding:40px;
+border-radius:10px;
+box-shadow:0 4px 20px rgba(0,0,0,0.6);
+}
+
+.support-header{
+text-align:center;
+margin-bottom:40px;
+}
+
+.support-header h1{
+font-size:32px;
+}
+
+.support-section{
+margin-bottom:30px;
+}
+
+.support-box{
+background:#111;
+padding:18px;
+border-radius:6px;
+margin-bottom:12px;
+border-left:4px solid #00ffd5;
+}
+
+.support-box span{
+color:#00ffd5;
+font-weight:bold;
+}
+
+.issue-box{
+background:#111;
+padding:18px;
+border-radius:6px;
+margin-top:10px;
+border-left:4px solid #00ffd5;
+}
+
+.back-btn{
+margin-top:30px;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="nav-left">
+<h2>Stocker</h2>
+</div>
+
+<div class="nav-right">
+
+<a href="/dashboard_trader"><button>Dashboard</button></a>
+<a href="/help"><button>Help</button></a>
+<a href="/faq"><button>FAQs</button></a>
+
+</div>
+
+</div>
+
+
+<!-- SUPPORT CONTENT -->
+
+<div class="support-container">
+
+<div class="support-header">
+
+<h1>Customer Support</h1>
+
+<p>If you experience issues with the trading platform, please contact support.</p>
+
+</div>
+
+
+<!-- CONTACT DETAILS -->
+
+<div class="support-section">
+
+<h2>Support Contact Details</h2>
+
+<div class="support-box">
+<span>Phone:</span> 9685424454
+</div>
+
+<div class="support-box">
+<span>Email:</span> vs2546496@gmail.com
+</div>
+
+</div>
+
+
+<!-- SUPPORT HOURS -->
+
+<div class="support-section">
+
+<h2>Support Hours</h2>
+
+<div class="support-box">
+Monday – Saturday
+</div>
+
+<div class="support-box">
+9:00 AM – 6:00 PM
+</div>
+
+</div>
+
+
+<!-- COMMON ISSUES -->
+
+<div class="support-section">
+
+<h2>Common Issues</h2>
+
+<div class="issue-box">Unable to login</div>
+<div class="issue-box">Transaction errors</div>
+<div class="issue-box">Portfolio not updating</div>
+<div class="issue-box">Profile photo issues</div>
+
+</div>
+
+
+<!-- BACK BUTTON -->
+
+<div class="back-btn">
+
+<a href="/dashboard_trader">
+<button>Back</button>
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

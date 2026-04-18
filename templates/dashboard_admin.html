@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Admin Dashboard</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+/* SIDEBAR */
+
+.sidebar{
+position:fixed;
+left:-220px;
+top:60px;
+width:220px;
+height:100%;
+background:#111;
+padding:20px;
+transition:0.3s;
+}
+
+.sidebar a{
+display:block;
+color:white;
+padding:10px;
+margin-bottom:10px;
+text-decoration:none;
+border-radius:5px;
+}
+
+.sidebar a:hover{
+background:#00c896;
+}
+
+.sidebar.active{
+left:0;
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+transition:0.3s;
+margin-left:0;
+}
+
+.main-content.shift{
+margin-left:220px;
+}
+
+/* MENU BUTTON */
+
+.menu-btn{
+font-size:22px;
+cursor:pointer;
+color:white;
+margin-right:15px;
+}
+
+/* LEFT NAV GROUP */
+
+.nav-left{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="nav-left">
+
+<span class="menu-btn" onclick="toggleMenu()">☰</span>
+
+<h2>Stocker</h2>
+
+</div>
+
+<div class="nav-right">
+
+<img src="{{ url_for('static', filename='uploads/' + session.get('photo','default.png')) }}" class="profile">
+
+<span>{{ session.get('email') }}</span>
+
+<a href="/update_photo"><button>Update Photo</button></a>
+
+<a href="/logout"><button>Logout</button></a>
+
+</div>
+
+</div>
+
+
+<!-- SIDEBAR -->
+
+<div class="sidebar" id="sidebar">
+
+<h3 style="color:#00ffd5">Menu</h3>
+
+<a href="/dashboard_admin">Dashboard</a>
+
+<hr>
+
+<a href="/help">Help</a>
+<a href="/faq">FAQs</a>
+<a href="/support">Support</a>
+<a href="/about">About Us</a>
+
+</div>
+
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content" id="main">
+
+<div class="container">
+
+<h1>Admin Dashboard</h1>
+
+<a href="/service01"><button>Manage Traders</button></a>
+
+<br><br>
+
+<a href="/service02"><button>View Transactions</button></a>
+
+<br><br>
+
+<a href="/service03"><button>Platform Statistics</button></a>
+
+<br><br>
+
+<a href="/manage_stocks"><button>Manage Stocks</button></a>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* SIDEBAR TOGGLE */
+
+function toggleMenu(){
+
+document.getElementById("sidebar").classList.toggle("active");
+
+document.getElementById("main").classList.toggle("shift");
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manage Stocks</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Manage Stocks</h1>
+
+<a href="/add_stock"><button>Add New Stock</button></a>
+
+<table>
+
+<tr>
+<th>Stock Symbol</th>
+<th>Base Price</th>
+<th>Action</th>
+</tr>
+
+{% for stock in stocks %}
+
+<tr>
+
+<td>{{ stock.symbol }}</td>
+
+<td>${{ stock.price }}</td>
+
+<td>
+
+<form action="/delete_stock/{{ stock.id }}" method="POST">
+
+<button style="background:red;">Delete</button>
+
+</form>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/dashboard_admin"><button>Back</button></a>
+
+</div>
+
+</body>
+</html>

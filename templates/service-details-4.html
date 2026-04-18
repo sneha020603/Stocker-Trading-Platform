@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Stock Market</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Stock Market</h1>
+
+<table>
+
+<tr>
+<th>Stock</th>
+<th>Price</th>
+<th>Buy</th>
+</tr>
+
+{% for stock in stocks %}
+
+<tr>
+
+<td>{{ stock.symbol }}</td>
+
+<td>${{ stock.price }}</td>
+
+<td>
+<a href="/buy/{{ stock.id }}"><button>Buy</button></a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

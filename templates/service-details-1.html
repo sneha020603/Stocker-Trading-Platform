@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manage Traders</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Manage Traders</h1>
+
+<table>
+
+<tr>
+<th>Username</th>
+<th>Email</th>
+<th>Action</th>
+</tr>
+
+{% for trader in traders %}
+
+<tr>
+
+<td>{{ trader.username }}</td>
+<td>{{ trader.email }}</td>
+
+<td>
+
+<form action="/delete_trader/{{ trader.email }}" method="POST">
+<button style="background:red;">Delete</button>
+</form>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/dashboard_admin"><button>Back</button></a>
+
+</div>
+
+</body>
+</html>

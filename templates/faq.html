@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>FAQs | Stocker</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+/* FAQ PAGE */
+
+.faq-container{
+width:70%;
+margin:auto;
+margin-top:60px;
+background:rgba(0,0,0,0.80);
+padding:40px;
+border-radius:10px;
+box-shadow:0 4px 20px rgba(0,0,0,0.6);
+}
+
+.faq-header{
+text-align:center;
+margin-bottom:40px;
+}
+
+.faq-header h1{
+font-size:32px;
+}
+
+.faq-item{
+background:#111;
+padding:18px;
+border-radius:6px;
+margin-bottom:15px;
+border-left:4px solid #00ffd5;
+}
+
+.faq-item h3{
+margin:0;
+color:#00ffd5;
+font-size:18px;
+}
+
+.faq-item p{
+margin-top:8px;
+font-size:15px;
+}
+
+.contact-box{
+background:#111;
+padding:20px;
+border-radius:8px;
+margin-top:30px;
+}
+
+.contact-box span{
+color:#00ffd5;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="nav-left">
+<h2>Stocker</h2>
+</div>
+
+<div class="nav-right">
+
+<a href="/dashboard_trader"><button>Dashboard</button></a>
+<a href="/help"><button>Help</button></a>
+<a href="/support"><button>Support</button></a>
+
+</div>
+
+</div>
+
+
+<!-- FAQ CONTENT -->
+
+<div class="faq-container">
+
+<div class="faq-header">
+
+<h1>Frequently Asked Questions</h1>
+
+<p>Find answers to common questions about the Stocker trading platform.</p>
+
+</div>
+
+
+<div class="faq-item">
+<h3>1. How do I create an account?</h3>
+<p>Click the Signup button and provide username, email, password and profile photo.</p>
+</div>
+
+<div class="faq-item">
+<h3>2. How do I buy stocks?</h3>
+<p>Login → Trader Dashboard → Click Buy next to a stock.</p>
+</div>
+
+<div class="faq-item">
+<h3>3. How do I sell stocks?</h3>
+<p>Login → Trader Dashboard → Click Sell.</p>
+</div>
+
+<div class="faq-item">
+<h3>4. How do I check my portfolio?</h3>
+<p>Click the Portfolio button on the Trader Dashboard.</p>
+</div>
+
+<div class="faq-item">
+<h3>5. How do I update my profile photo?</h3>
+<p>Click the Update Photo button in the navbar.</p>
+</div>
+
+<div class="faq-item">
+<h3>6. Why are charts showing low numbers?</h3>
+<p>This happens when few transactions exist. As trades increase, analytics charts update automatically.</p>
+</div>
+
+<div class="faq-item">
+<h3>7. Who can delete traders?</h3>
+<p>Only Admin users can delete trader accounts.</p>
+</div>
+
+<div class="faq-item">
+<h3>8. What analytics are available?</h3>
+<p>
+Buy vs Sell trades<br>
+Trades per stock<br>
+Daily transactions<br>
+Top traders
+</p>
+</div>
+
+
+<!-- CONTACT -->
+
+<div class="contact-box">
+
+<p>If your question is not answered here, contact support.</p>
+
+<p><span>Phone:</span> 9685424454</p>
+
+<p><span>Email:</span> vs2546496@gmail.com</p>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Update Profile Photo</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Update Profile Photo</h1>
+
+<img src="{{ url_for('static', filename='uploads/' + session.get('photo','default.png')) }}" class="profile_large">
+
+<form method="POST" enctype="multipart/form-data">
+
+<input type="file" name="photo" required>
+
+<br><br>
+
+<button type="submit">Upload New Photo</button>
+
+</form>
+
+<br>
+
+<a href="/dashboard_trader"><button>Back</button></a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Portfolio</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Your Portfolio</h1>
+
+<h2>Total Profit / Loss: 
+
+{% if total_pnl > 0 %}
+<span style="color:lime;">+${{ total_pnl }}</span>
+
+{% elif total_pnl < 0 %}
+<span style="color:red;">${{ total_pnl }}</span>
+
+{% else %}
+$0
+{% endif %}
+
+</h2>
+
+
+<table>
+
+<tr>
+<th>Stock</th>
+<th>Buy Price</th>
+<th>Current Price</th>
+<th>Quantity</th>
+<th>Profit / Loss</th>
+</tr>
+
+{% for p in portfolio %}
+
+<tr>
+
+<td>{{ p.symbol }}</td>
+
+<td>${{ p.buy_price }}</td>
+
+<td>
+{% if p.current_price == "N/A" %}
+N/A
+{% else %}
+${{ p.current_price }}
+{% endif %}
+</td>
+
+<td>{{ p.quantity }}</td>
+
+<td>
+
+{% if p.profit_loss == "N/A" %}
+
+N/A
+
+{% elif p.profit_loss > 0 %}
+
+<span style="color:lime;">+${{ p.profit_loss }}</span>
+
+{% elif p.profit_loss < 0 %}
+
+<span style="color:red;">${{ p.profit_loss }}</span>
+
+{% else %}
+
+$0
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+
+<h2>Transaction History</h2>
+
+<table>
+
+<tr>
+<th>User</th>
+<th>Stock</th>
+<th>Action</th>
+<th>Quantity</th>
+</tr>
+
+{% for t in transactions %}
+
+<tr>
+
+<td>{{ t.user_id }}</td>
+<td>{{ t.stock_id }}</td>
+<td>{{ t.action }}</td>
+<td>{{ t.quantity }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/dashboard_trader"><button>Back</button></a>
+
+</div>
+
+</body>
+</html>

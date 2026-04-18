@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Trader Dashboard</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<meta http-equiv="refresh" content="30">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+/* SIDEBAR */
+
+.sidebar{
+position:fixed;
+left:-220px;
+top:60px;
+width:220px;
+height:100%;
+background:#111;
+padding:20px;
+transition:0.3s;
+}
+
+.sidebar a{
+display:block;
+color:white;
+padding:10px;
+margin-bottom:10px;
+text-decoration:none;
+border-radius:5px;
+}
+
+.sidebar a:hover{
+background:#00c896;
+}
+
+.sidebar.active{
+left:0;
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+transition:0.3s;
+margin-left:0;
+}
+
+.main-content.shift{
+margin-left:220px;
+}
+
+/* MENU BUTTON */
+
+.menu-btn{
+font-size:22px;
+cursor:pointer;
+color:white;
+margin-right:15px;
+}
+
+/* LEFT NAV GROUP */
+
+.nav-left{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="nav-left">
+
+<span class="menu-btn" onclick="toggleMenu()">☰</span>
+
+<h2>Stocker</h2>
+
+</div>
+
+<div class="nav-right">
+<span style="color:#00ffd5;">Wallet: ${{ wallet }}</span>
+<img src="{{ url_for('static', filename='uploads/' + session.get('photo','default.png')) }}" class="profile">
+
+<span>{{ session.get('email') }}</span>
+
+
+<a href="/update_photo"><button>Update Photo</button></a>
+
+<a href="/logout"><button>Logout</button></a>
+
+</div>
+
+</div>
+
+
+<!-- SIDEBAR -->
+
+<div class="sidebar" id="sidebar">
+
+<h3 style="color:#00ffd5">Menu</h3>
+
+<a href="/dashboard_trader">Dashboard</a>
+<a href="/service05">Portfolio</a>
+<a href="/wallet">Wallet</a>
+
+
+<hr>
+
+<a href="/help">Help</a>
+<a href="/faq">FAQs</a>
+<a href="/support">Support</a>
+<a href="/about">About Us</a>
+
+</div>
+
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content" id="main">
+
+<div class="container">
+
+<h1>Trader Dashboard</h1>
+
+<table>
+
+<tr>
+<th>Stock</th>
+<th>Price</th>
+<th>Buy</th>
+<th>Sell</th>
+</tr>
+
+{% for stock in stocks %}
+
+<tr>
+
+<td>{{ stock.symbol }}</td>
+<td>
+$ {{ stock.live_price }}
+
+{% if stock.change > 0 %}
+<span style="color:lime;">
+▲ +{{ stock.change }} ({{ stock.percent }}%)
+</span>
+
+{% elif stock.change < 0 %}
+<span style="color:red;">
+▼ {{ stock.change }} ({{ stock.percent }}%)
+</span>
+
+{% else %}
+<span>0%</span>
+{% endif %}
+</td>
+
+<td>
+<a href="/buy/{{ stock.id }}"><button>Buy</button></a>
+</td>
+
+<td>
+<a href="/sell/{{ stock.id }}"><button>Sell</button></a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+
+<br><br>
+
+<div class="chart-box">
+
+<h2>Live Stock Chart</h2>
+
+<select id="stockSelect">
+
+{% for stock in stocks %}
+<option value="{{ stock.symbol }}">{{ stock.symbol }}</option>
+{% endfor %}
+
+</select>
+
+<br><br>
+
+<canvas id="stockChart"></canvas>
+
+</div>
+
+
+<br><br>
+
+<a href="/service05"><button>Portfolio</button></a>
+
+<br><br>
+
+<a href="/delete_account">
+<button style="background:red">Delete Account</button>
+</a>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* SIDEBAR TOGGLE */
+
+function toggleMenu(){
+
+document.getElementById("sidebar").classList.toggle("active");
+
+document.getElementById("main").classList.toggle("shift");
+
+}
+
+
+/* STOCK CHART */
+
+let chart;
+
+function loadChart(symbol){
+
+fetch("/stock_chart/" + symbol)
+
+.then(res=>res.json())
+
+.then(data=>{
+
+if(chart){ chart.destroy(); }
+
+chart=new Chart(
+document.getElementById("stockChart"),
+{
+type:"line",
+
+data:{
+labels:data.labels,
+
+datasets:[{
+label:"Stock Price",
+data:data.prices,
+borderColor:"#00ffd5",
+fill:false
+}]
+},
+
+options:{
+plugins:{legend:{labels:{color:"#fff"}}},
+scales:{
+x:{ticks:{color:"#fff"}},
+y:{ticks:{color:"#fff"}}
+}
+}
+
+});
+
+});
+
+}
+
+const selector=document.getElementById("stockSelect");
+
+loadChart(selector.value);
+
+selector.addEventListener("change",function(){
+loadChart(this.value);
+});
+
+</script>
+
+</body>
+</html>
